@@ -1,0 +1,21 @@
+sudo: required
+language: android
+jdk: oraclejdk8
+android:
+  components:
+  - tools
+  - platform-tools
+  - build-tools-23.0.2
+  - android-23
+  - extra-android-m2repository
+script:
+- ./build.sh
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  overwrite: true
+  api_key: $GITHUB_API_KEY
+  file: openmrs-client/build/outputs/apk/openmrs-client-release.apk
+  on:
+    tags: true
